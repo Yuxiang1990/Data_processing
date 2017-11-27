@@ -18,7 +18,7 @@ with concurrent.futures.ProcessPoolExecutor(max_workers=8) as executor:
     except KeyboardInterrupt:
         print("stopped by hand")
 
-#-----------------------------------------------------------------------------------------#  
+#------------------------------------Process来构造一个子进程---------------------------------------------#  
 #coding=utf-8
 import multiprocessing
 
@@ -34,10 +34,11 @@ if __name__ == '__main__' :
   for i in xrange(5) :
     p = multiprocessing.Process(target=do, args=(i,))
     numList.append(p)
-    p.start()
-    p.join()
+    p.start() #p.start()来启动子进程
+    p.join() #p.join()方法来使得子进程运行结束后再执行父进程
     print "Process end."
-    
+
+#--------------------------------需要多个子进程时可以考虑使用进程池(pool)来管理----------------------#    
 #-------------------------------------multiprocessing.Pool类的实例------------------------------#
 import time
 from multiprocessing import Pool
